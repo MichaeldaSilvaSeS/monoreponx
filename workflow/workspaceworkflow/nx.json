@@ -1,0 +1,25 @@
+{
+  "npmScope": "workspaceworkflow",
+  "affected": { "defaultBase": "master" },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+    }
+  },
+  "projects": {
+    "workflow": { "tags": [] },
+    "workflow-e2e": { "tags": [], "implicitDependencies": ["workflow"] },
+    "ui-header": { "tags": [] },
+    "ui-login": { "tags": [] },
+    "lib-apis": { "tags": [] }
+  }
+}

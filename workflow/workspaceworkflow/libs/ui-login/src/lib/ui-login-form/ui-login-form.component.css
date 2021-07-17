@@ -1,0 +1,38 @@
+.ui-login-form {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.ui-login-form .ui-login {
+    display: block;
+    background-color: lightgrey;
+    padding: 100px;
+    border-radius: 0.5em;
+    margin: 150px;
+}
+
+.ui-login-form .ui-login .ui-login-label, .ui-login-form .ui-login .ui-login-input, .ui-login-form .ui-login .ui-login-button {
+    display: block;
+    padding: 10px 10px 10px 0px;
+    margin: 5px;
+    border-radius: 0.1em;
+    box-shadow: gray;
+
+    border:none;
+    background-image:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.ui-login-form .ui-login .ui-login-input {
+    background-color: whitesmoke;
+    border: lightgray;
+    text-indent: 5px;
+}
+
+.ui-login-form .ui-login .ui-login-button {
+    float: right;
+    padding: 10px 10px 10px 10px;
+}

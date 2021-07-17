@@ -1,0 +1,225 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "css"
+    }
+  },
+  "defaultProject": "workflow",
+  "projects": {
+    "workflow": {
+      "projectType": "application",
+      "root": "apps/workflow",
+      "sourceRoot": "apps/workflow/src",
+      "prefix": "workspaceworkflow",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/workflow",
+            "index": "apps/workflow/src/index.html",
+            "main": "apps/workflow/src/main.ts",
+            "polyfills": "apps/workflow/src/polyfills.ts",
+            "tsConfig": "apps/workflow/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/workflow/src/favicon.ico",
+              "apps/workflow/src/assets"
+            ],
+            "styles": ["apps/workflow/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/workflow/src/environments/environment.ts",
+                  "with": "apps/workflow/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "workflow:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "workflow:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "workflow:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/workflow/src/**/*.ts",
+              "apps/workflow/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/workflow"],
+          "options": {
+            "jestConfig": "apps/workflow/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "workflow-e2e": {
+      "root": "apps/workflow-e2e",
+      "sourceRoot": "apps/workflow-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/workflow-e2e/cypress.json",
+            "tsConfig": "apps/workflow-e2e/tsconfig.e2e.json",
+            "devServerTarget": "workflow:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "workflow:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/workflow-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "ui-header": {
+      "projectType": "library",
+      "root": "libs/ui-header",
+      "sourceRoot": "libs/ui-header/src",
+      "prefix": "workspaceworkflow",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui-header/src/**/*.ts",
+              "libs/ui-header/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui-header"],
+          "options": {
+            "jestConfig": "libs/ui-header/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-login": {
+      "projectType": "library",
+      "root": "libs/ui-login",
+      "sourceRoot": "libs/ui-login/src",
+      "prefix": "workspaceworkflow",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui-login/src/**/*.ts",
+              "libs/ui-login/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui-login"],
+          "options": {
+            "jestConfig": "libs/ui-login/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib-apis": {
+      "projectType": "library",
+      "root": "libs/lib-apis",
+      "sourceRoot": "libs/lib-apis/src",
+      "prefix": "workspaceworkflow",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib-apis/src/**/*.ts",
+              "libs/lib-apis/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/lib-apis"],
+          "options": {
+            "jestConfig": "libs/lib-apis/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  }
+}
