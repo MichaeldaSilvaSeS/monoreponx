@@ -15,9 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@workspaceworkflow/lib-apis": ["libs/lib-apis/src/index.ts"],
       "@workspaceworkflow/ui-header": ["libs/ui-header/src/index.ts"],
-      "@workspaceworkflow/ui-login": ["libs/ui-login/src/index.ts"],
-      "@workspaceworkflow/lib-apis": ["libs/lib-apis/src/index.ts"]
+      "@workspaceworkflow/ui-login": ["libs/ui-login/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

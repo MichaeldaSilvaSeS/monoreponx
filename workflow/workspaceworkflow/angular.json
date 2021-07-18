@@ -32,6 +32,143 @@
   },
   "defaultProject": "workflow",
   "projects": {
+    "lib-apis": {
+      "projectType": "library",
+      "root": "libs/lib-apis",
+      "sourceRoot": "libs/lib-apis/src",
+      "prefix": "workspaceworkflow",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib-apis/src/**/*.ts",
+              "libs/lib-apis/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/lib-apis"],
+          "options": {
+            "jestConfig": "libs/lib-apis/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-header": {
+      "projectType": "library",
+      "root": "libs/ui-header",
+      "sourceRoot": "libs/ui-header/src",
+      "prefix": "workspaceworkflow",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui-header/src/**/*.ts",
+              "libs/ui-header/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui-header"],
+          "options": {
+            "jestConfig": "libs/ui-header/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/ui-header/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/ui-header",
+            "config": {
+              "configFolder": "libs/ui-header/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "ui-login": {
+      "projectType": "library",
+      "root": "libs/ui-login",
+      "sourceRoot": "libs/ui-login/src",
+      "prefix": "workspaceworkflow",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui-login/src/**/*.ts",
+              "libs/ui-login/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui-login"],
+          "options": {
+            "jestConfig": "libs/ui-login/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/ui-login/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/ui-login",
+            "config": {
+              "configFolder": "libs/ui-login/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
     "workflow": {
       "projectType": "application",
       "root": "apps/workflow",
@@ -117,6 +254,37 @@
             "jestConfig": "apps/workflow/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "apps/workflow/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/workflow",
+            "config": {
+              "configFolder": "apps/workflow/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
         }
       }
     },
@@ -142,81 +310,6 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/workflow-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "ui-header": {
-      "projectType": "library",
-      "root": "libs/ui-header",
-      "sourceRoot": "libs/ui-header/src",
-      "prefix": "workspaceworkflow",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/ui-header/src/**/*.ts",
-              "libs/ui-header/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ui-header"],
-          "options": {
-            "jestConfig": "libs/ui-header/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "ui-login": {
-      "projectType": "library",
-      "root": "libs/ui-login",
-      "sourceRoot": "libs/ui-login/src",
-      "prefix": "workspaceworkflow",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/ui-login/src/**/*.ts",
-              "libs/ui-login/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ui-login"],
-          "options": {
-            "jestConfig": "libs/ui-login/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "lib-apis": {
-      "projectType": "library",
-      "root": "libs/lib-apis",
-      "sourceRoot": "libs/lib-apis/src",
-      "prefix": "workspaceworkflow",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/lib-apis/src/**/*.ts",
-              "libs/lib-apis/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib-apis"],
-          "options": {
-            "jestConfig": "libs/lib-apis/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
