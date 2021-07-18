@@ -8,6 +8,7 @@ Features
 Technologies
 * Nx Workspace (https://nx.dev/)
 * Angular (https://angular.io/)
+* StoryBook (https://storybook.js.org/docs/angular/get-started/whats-a-story)
 * Funcional Test (https://www.cypress.io/)
 * Typescript
 * HTML
